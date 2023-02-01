@@ -1,7 +1,8 @@
 import {Exclude} from "class-transformer";
-import {Column, Entity} from "typeorm";
+import {Column, Entity, OneToMany} from "typeorm";
 
 import {Base} from "./base.entity";
+import {Quote} from "./quote.entity";
 
 @Entity()
 export class User extends Base {
@@ -24,4 +25,7 @@ export class User extends Base {
 	@Column({nullable: true, default: null})
 	@Exclude()
 	refresh_token: string;
+
+	@OneToMany(() => Quote, (quote) => quote.user)
+	my_quotes: Quote[];
 }
