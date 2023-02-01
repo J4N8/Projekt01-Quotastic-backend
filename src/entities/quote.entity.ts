@@ -1,3 +1,4 @@
+import {IsNotEmpty} from "class-validator";
 import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
 
 import {Base} from "./base.entity";
@@ -11,7 +12,8 @@ export class Quote extends Base {
 	@Column({nullable: false})
 	content: string;
 
-	@ManyToOne(() => User, (user) => user.my_quotes)
-	@JoinColumn({name: "user_id"})
-	user: User;
+	@ManyToOne(() => User, (author) => author.my_quotes)
+	@JoinColumn({name: "author"})
+	@IsNotEmpty()
+	author: User;
 }

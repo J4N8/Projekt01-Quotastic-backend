@@ -7,6 +7,7 @@ import {LoggerMiddleware} from "middleware/logger.middleware";
 import {AuthModule} from "./auth/auth.module";
 import {JwtAuthGuard} from "./auth/guards/jwt.guard";
 import {DatabaseModule} from "./database/database.module";
+import {QuoteModule} from "./quote/quote.module";
 import {UserModule} from "./user/user.module";
 
 @Module({
@@ -19,6 +20,7 @@ import {UserModule} from "./user/user.module";
 		DatabaseModule,
 		UserModule,
 		AuthModule,
+		QuoteModule,
 	],
 	controllers: [],
 	providers: [

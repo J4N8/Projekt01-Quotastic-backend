@@ -26,6 +26,6 @@ export class User extends Base {
 	@Exclude()
 	refresh_token: string;
 
-	@OneToMany(() => Quote, (quote) => quote.user)
+	@OneToMany(() => Quote, (quote) => quote.author)
 	my_quotes: Quote[];
 }
