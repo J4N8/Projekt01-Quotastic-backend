@@ -11,7 +11,7 @@ import {CreateUserDto} from "./dto/create-user.dto";
 import {UpdateUserDto} from "./dto/update-user.dto";
 
 @Injectable()
-export class UsersService extends AbstractService {
+export class UserService extends AbstractService {
 	constructor(@InjectRepository(User) private readonly usersRepository: Repository<User>) {
 		super(usersRepository);
 	}

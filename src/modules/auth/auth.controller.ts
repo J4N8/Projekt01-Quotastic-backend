@@ -25,13 +25,13 @@ import {JwtAuthGuard} from "./guards/jwt.guard";
 import {JwtRefreshAuthGuard} from "./guards/jwt-refresh.guard";
 import {LocalAuthGuard} from "./guards/local-auth.guard";
 
-@Controller("auth")
+@Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class AuthController {
 	constructor(private authService: AuthService) {}
 
 	@Public()
-	@Post("register")
+	@Post("signup")
 	@HttpCode(HttpStatus.CREATED)
 	async register(@Body() body: RegisterUserDto): Promise<User> {
 		return this.authService.register(body);
@@ -60,7 +60,7 @@ export class AuthController {
 	}
 
 	@UseGuards(JwtAuthGuard)
-	@Get()
+	@Get("me")
 	@HttpCode(HttpStatus.OK)
 	async getCurrentUser(@GetCurrentUser() user: User): Promise<UserData> {
 		return {

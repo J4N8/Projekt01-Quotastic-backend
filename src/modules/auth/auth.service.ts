@@ -13,7 +13,7 @@ import {PostgresErrorCode} from "helpers/postgresErrorCode.enum";
 import {CookieType, JwtType, TokenPayload} from "interfaces/auth.interface";
 import {UserData} from "interfaces/user.interface";
 import Logging from "library/Logging";
-import {UsersService} from "modules/users/users.service";
+import {UserService} from "modules/user/user.service";
 import {compareHash, hash} from "utils/bcrypt";
 
 import {RegisterUserDto} from "./dto/register-user.dto";
@@ -21,7 +21,7 @@ import {RegisterUserDto} from "./dto/register-user.dto";
 @Injectable()
 export class AuthService {
 	constructor(
-		private usersService: UsersService,
+		private usersService: UserService,
 		private jwtService: JwtService,
 		private configService: ConfigService,
 	) {}

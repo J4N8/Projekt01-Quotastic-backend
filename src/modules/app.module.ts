@@ -7,7 +7,7 @@ import {LoggerMiddleware} from "middleware/logger.middleware";
 import {AuthModule} from "./auth/auth.module";
 import {JwtAuthGuard} from "./auth/guards/jwt.guard";
 import {DatabaseModule} from "./database/database.module";
-import {UsersModule} from "./users/users.module";
+import {UserModule} from "./user/user.module";
 
 @Module({
 	imports: [
@@ -17,7 +17,7 @@ import {UsersModule} from "./users/users.module";
 			validationSchema: configValidationSchema,
 		}),
 		DatabaseModule,
-		UsersModule,
+		UserModule,
 		AuthModule,
 	],
 	controllers: [],

@@ -10,30 +10,22 @@ import {
 	Param,
 	Patch,
 	Post,
-	Query,
 	UploadedFile,
 	UseInterceptors,
 } from "@nestjs/common";
 import {FileInterceptor} from "@nestjs/platform-express";
 import {User} from "entities/user.entity";
 import {isFileExtensionSafe, removeFile, saveImageToStorage} from "helpers/imageStorage";
-import {PaginatedResult} from "interfaces/paginated-result.interface";
 import {join} from "path";
 
 import {CreateUserDto} from "./dto/create-user.dto";
 import {UpdateUserDto} from "./dto/update-user.dto";
-import {UsersService} from "./users.service";
+import {UserService} from "./user.service";
 
-@Controller("users")
+@Controller("me")
 @UseInterceptors(ClassSerializerInterceptor)
-export class UsersController {
-	constructor(private readonly usersService: UsersService) {}
-
-	@Get()
-	@HttpCode(HttpStatus.OK)
-	async findAll(@Query("page") page: number): Promise<PaginatedResult> {
-		return this.usersService.paginate(page, ["role"]);
-	}
+export class UserController {
+	constructor(private readonly usersService: UserService) {}
 
 	@Get(":id")
 	@HttpCode(HttpStatus.OK)
