@@ -50,3 +50,6 @@ Content-Type: application/json
 ### DELETE /me/myquote
 DELETE http://localhost:8080/me/myquote/1bc0117c-18ed-4459-8fd0-667d50276662 HTTP/1.1
 
+
+### POST /quotes/:id/upvote
+POST http://localhost:8080/quotes/076afdfe-8149-4cbe-a505-a8c468b6996c/upvote HTTP/1.1

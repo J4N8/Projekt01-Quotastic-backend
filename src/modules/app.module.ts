@@ -9,6 +9,7 @@ import {JwtAuthGuard} from "./auth/guards/jwt.guard";
 import {DatabaseModule} from "./database/database.module";
 import {QuoteModule} from "./quote/quote.module";
 import {UserModule} from "./user/user.module";
+import {VoteModule} from "./vote/vote.module";
 
 @Module({
 	imports: [
@@ -21,6 +22,7 @@ import {UserModule} from "./user/user.module";
 		UserModule,
 		AuthModule,
 		QuoteModule,
+		VoteModule,
 	],
 	controllers: [],
 	providers: [
