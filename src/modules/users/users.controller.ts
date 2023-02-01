@@ -15,7 +15,6 @@ import {
 	UseInterceptors,
 } from "@nestjs/common";
 import {FileInterceptor} from "@nestjs/platform-express";
-import {ApiBadRequestResponse, ApiCreatedResponse, ApiTags} from "@nestjs/swagger";
 import {User} from "entities/user.entity";
 import {isFileExtensionSafe, removeFile, saveImageToStorage} from "helpers/imageStorage";
 import {PaginatedResult} from "interfaces/paginated-result.interface";
@@ -25,14 +24,11 @@ import {CreateUserDto} from "./dto/create-user.dto";
 import {UpdateUserDto} from "./dto/update-user.dto";
 import {UsersService} from "./users.service";
 
-@ApiTags("users")
 @Controller("users")
 @UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
 
-	@ApiCreatedResponse({description: "List all users."})
-	@ApiBadRequestResponse({description: "Error for list of users."})
 	@Get()
 	@HttpCode(HttpStatus.OK)
 	async findAll(@Query("page") page: number): Promise<PaginatedResult> {
@@ -45,8 +41,6 @@ export class UsersController {
 		return this.usersService.findById(id);
 	}
 
-	@ApiCreatedResponse({description: "Creates new user."})
-	@ApiBadRequestResponse({description: "Error for creating a new user."})
 	@Post()
 	@HttpCode(HttpStatus.CREATED)
 	async create(@Body() createUserDto: CreateUserDto): Promise<User> {
