@@ -1,0 +1,66 @@
+### GET /
+GET http://localhost:8080 HTTP/1.1
+
+### POST /auth/register
+POST http://localhost:8080/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+	"email": "john@gmail.com",
+	"password": "John123!",
+	"confirm_password": "John123!"
+}
+
+### POST /auth/login
+POST http://localhost:8080/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+	"email": "john@gmail.com",
+	"password": "John123!"
+}
+
+### GET /users
+GET http://localhost:8080/users HTTP/1.1
+
+### PATCH /users/:id
+PATCH http://localhost:8080/users/e93de854-6bf2-4a74-a7c5-3182739df047 HTTP/1.1
+Content-Type: application/json
+
+{
+	"role_id": "6410a1c1-3c41-47e3-81dc-d26bd9d5d2ca"
+}
+
+### GET /orders
+GET http://localhost:8080/orders HTTP/1.1
+
+### GET /orders/chart
+GET http://localhost:8080/orders/chart HTTP/1.1
+
+### GET /permissions
+GET http://localhost:8080/permissions HTTP/1.1
+
+### POST /permissions
+POST http://localhost:8080/permissions HTTP/1.1
+Content-Type: application/json
+
+{
+	"name": "edit_permissions"
+}
+
+### GET /roles
+GET http://localhost:8080/roles HTTP/1.1
+
+### POST /roles
+POST http://localhost:8080/roles HTTP/1.1
+Content-Type: application/json
+
+{
+	"name": "Viewer",
+	"permissions": [
+		"bd2b0c9a-9c10-429e-9215-0e5139697438"
+	]
+}
+
+### DELETE /roles/:id
+DELETE http://localhost:8080/roles/1d65367a-4e53-4da4-b5c9-56ce9e9316dd HTTP/1.1
