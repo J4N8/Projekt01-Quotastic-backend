@@ -1,5 +1,18 @@
-import {Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query} from "@nestjs/common";
+import {
+	BadRequestException,
+	Body,
+	Controller,
+	Delete,
+	Get,
+	HttpCode,
+	HttpStatus,
+	Param,
+	Patch,
+	Post,
+	Query,
+} from "@nestjs/common";
 
+import {GetCurrentUserId} from "../../decorators/get-current-user-id.decorator";
 import {Quote} from "../../entities/quote.entity";
 import {PaginatedResult} from "../../interfaces/paginated-result.interface";
 import {QuoteDto} from "./dto/quote.dto";
@@ -29,13 +42,25 @@ export class QuoteController {
 
 	@Patch("me/myquote/:id")
 	@HttpCode(HttpStatus.OK)
-	async update(@Param("id") id: string, @Body() quoteDto: QuoteDto): Promise<Quote> {
+	async update(
+		@Param("id") id: string,
+		@Body() quoteDto: QuoteDto,
+		@GetCurrentUserId() userId: string,
+	): Promise<Quote> {
+		const quote: Quote = await this.quoteService.findById(id, ["author"]);
+		if (quote.author.id !== userId) {
+			throw new BadRequestException("You can only update your own quotes.");
+		}
 		return this.quoteService.update(id, quoteDto);
 	}
 
 	@Delete("me/myquote/:id")
 	@HttpCode(HttpStatus.OK)
-	async remove(@Param("id") id: string): Promise<Quote> {
+	async remove(@Param("id") id: string, @GetCurrentUserId() userId: string): Promise<Quote> {
+		const quote: Quote = await this.quoteService.findById(id, ["author"]);
+		if (quote.author.id !== userId) {
+			throw new BadRequestException("You can only delete your own quotes.");
+		}
 		return this.quoteService.remove(id);
 	}
 }
