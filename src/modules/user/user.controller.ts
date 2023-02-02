@@ -3,7 +3,6 @@ import {
 	Body,
 	ClassSerializerInterceptor,
 	Controller,
-	Delete,
 	Get,
 	HttpCode,
 	HttpStatus,
@@ -18,8 +17,9 @@ import {User} from "entities/user.entity";
 import {isFileExtensionSafe, removeFile, saveImageToStorage} from "helpers/imageStorage";
 import {join} from "path";
 
+import {GetCurrentUserId} from "../../decorators/get-current-user-id.decorator";
 import {CreateUserDto} from "./dto/create-user.dto";
-import {UpdateUserDto} from "./dto/update-user.dto";
+import {UpdatePasswordDto} from "./dto/update-password.dto";
 import {UserService} from "./user.service";
 
 @Controller("me")
@@ -56,15 +56,9 @@ export class UserController {
 		throw new BadRequestException("File content does not match extension!");
 	}
 
-	@Patch(":id")
+	@Patch("update-password")
 	@HttpCode(HttpStatus.OK)
-	async update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto): Promise<User> {
-		return this.usersService.update(id, updateUserDto);
-	}
-
-	@Delete(":id")
-	@HttpCode(HttpStatus.OK)
-	async remove(@Param("id") id: string): Promise<User> {
-		return this.usersService.remove(id);
+	async update(@Body() updatePasswordDto: UpdatePasswordDto, @GetCurrentUserId() userId: string): Promise<User> {
+		return this.usersService.updatePassword(userId, updatePasswordDto);
 	}
 }

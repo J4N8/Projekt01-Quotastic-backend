@@ -8,6 +8,7 @@ import {Repository} from "typeorm";
 import {compareHash, hash} from "utils/bcrypt";
 
 import {CreateUserDto} from "./dto/create-user.dto";
+import {UpdatePasswordDto} from "./dto/update-password.dto";
 import {UpdateUserDto} from "./dto/update-user.dto";
 
 @Injectable()
@@ -62,5 +63,16 @@ export class UserService extends AbstractService {
 	async updateUserImageId(id: string, avatar: string): Promise<User> {
 		const user = await this.findById(id);
 		return this.update(user.id, {avatar});
+	}
+
+	async updatePassword(id: string, updatePasswordDto: UpdatePasswordDto): Promise<User> {
+		try {
+			const user = (await this.findById(id)) as User;
+			user.password = await hash(updatePasswordDto.password);
+			return this.usersRepository.save(user);
+		} catch (error) {
+			Logging.error(error);
+			throw new InternalServerErrorException("Something went wrong while updating the password.");
+		}
 	}
 }

@@ -88,3 +88,21 @@ Content-Type: application/json
 
 ### DELETE /me/myquote/:id
 DELETE http://localhost:8080/me/myquote/1435b0ca-8fd7-47e7-b00f-245c66115fdf HTTP/1.1
+
+#Update password
+### POST /login
+POST http://localhost:8080/login HTTP/1.1
+Content-Type: application/json
+
+{
+	"email": "mike@gmail.com",
+	"password": "Mike123!"
+}
+
+### PATCH /me/update-password
+PATCH http://localhost:8080/me/update-password HTTP/1.1
+Content-Type: application/json
+
+{
+	"password": "Mike321!"
+}
