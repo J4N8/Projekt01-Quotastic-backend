@@ -13,6 +13,7 @@ import {
 } from "@nestjs/common";
 
 import {GetCurrentUserId} from "../../decorators/get-current-user-id.decorator";
+import {Public} from "../../decorators/public.decorator";
 import {Quote} from "../../entities/quote.entity";
 import {PaginatedResult} from "../../interfaces/paginated-result.interface";
 import {QuoteDto} from "./dto/quote.dto";
@@ -22,12 +23,14 @@ import {QuoteService} from "./quote.service";
 export class QuoteController {
 	constructor(private readonly quoteService: QuoteService) {}
 
+	@Public()
 	@Get("quotes")
 	@HttpCode(HttpStatus.OK)
 	async findAll(@Query("page") page: number): Promise<PaginatedResult> {
 		return this.quoteService.paginate(page, ["author"]);
 	}
 
+	@Public()
 	@Get("quotes/:id")
 	@HttpCode(HttpStatus.OK)
 	async findOne(@Param("id") id: string): Promise<Quote> {
