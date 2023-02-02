@@ -10,7 +10,7 @@ export class Vote extends Base {
 	upvote: boolean;
 
 	@ManyToOne(() => Quote, (quote) => quote.id)
-	@JoinColumn({name: "quote"})
+	@JoinColumn({name: "quote_id"})
 	@IsNotEmpty()
 	quote: Quote;
 }

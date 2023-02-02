@@ -1,4 +1,3 @@
-import {Exclude} from "class-transformer";
 import {IsNotEmpty} from "class-validator";
 import {Column, Entity, JoinColumn, ManyToOne, OneToMany} from "typeorm";
 
@@ -19,7 +18,6 @@ export class Quote extends Base {
 	@IsNotEmpty()
 	author: User;
 
-	@Exclude()
 	@OneToMany(() => Vote, (vote) => vote.quote)
 	votes: Vote[];
 }

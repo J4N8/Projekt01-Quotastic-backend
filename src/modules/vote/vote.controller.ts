@@ -1,7 +1,8 @@
-import {Controller, HttpCode, HttpStatus, Post, Req} from "@nestjs/common";
+import {Controller, HttpCode, HttpStatus, Param, Post, Req} from "@nestjs/common";
 import {Request} from "express";
 
 import {Vote} from "../../entities/vote.entity";
+import {VoteDto} from "./dto/vote.dto";
 import {VoteService} from "./vote.service";
 
 @Controller()
@@ -10,9 +11,9 @@ export class VoteController {
 
 	@Post(["quotes/:id/upvote", "quotes/:id/downvote"])
 	@HttpCode(HttpStatus.CREATED)
-	async create(@Req() req: Request): Promise<Vote> {
-		const quote_id: string = req.path.split("/")[2];
+	async create(@Req() req: Request, @Param("id") quote_id: string): Promise<Vote> {
 		const upvote: boolean = req.path.split("/")[3] === "upvote";
-		return this.voteService.create({quote_id: quote_id, upvote: upvote});
+		const voteDto: VoteDto = {quote_id: quote_id, upvote: upvote};
+		return this.voteService.create(voteDto);
 	}
 }

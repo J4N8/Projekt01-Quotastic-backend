@@ -15,7 +15,7 @@ export class VoteService extends AbstractService {
 
 	async create(voteDto: VoteDto): Promise<Vote> {
 		try {
-			const vote = this.voteRepository.create(voteDto);
+			const vote = this.voteRepository.create({...voteDto, quote: {id: voteDto.quote_id}});
 			return this.voteRepository.save(vote);
 		} catch (error) {
 			Logging.error(error);
