@@ -28,4 +28,10 @@ export class User extends Base {
 
 	@OneToMany(() => Quote, (quote) => quote.author)
 	my_quotes: Quote[];
+
+	@Column({default: 0})
+	quote_count: number;
+
+	@Column({default: 0})
+	karma: number;
 }

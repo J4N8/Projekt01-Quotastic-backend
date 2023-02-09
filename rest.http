@@ -34,7 +34,7 @@ POST http://localhost:8080/me/myquote HTTP/1.1
 Content-Type: application/json
 
 {
-	"content": "test quote 3",
+	"content": "test quote 5",
 	"user_id": "85858626-3f87-428e-8643-ae0628b462f7"
 }
 
