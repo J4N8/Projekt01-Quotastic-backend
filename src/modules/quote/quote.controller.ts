@@ -19,31 +19,31 @@ import {PaginatedResult} from "../../interfaces/paginated-result.interface";
 import {QuoteDto} from "./dto/quote.dto";
 import {QuoteService} from "./quote.service";
 
-@Controller()
+@Controller("quotes")
 export class QuoteController {
 	constructor(private readonly quoteService: QuoteService) {}
 
 	@Public()
-	@Get("quotes")
+	@Get()
 	@HttpCode(HttpStatus.OK)
 	async findAll(@Query("page") page: number): Promise<PaginatedResult> {
 		return this.quoteService.paginate(page, ["author"]);
 	}
 
 	@Public()
-	@Get("quotes/:id")
+	@Get("/:id")
 	@HttpCode(HttpStatus.OK)
 	async findOne(@Param("id") id: string): Promise<Quote> {
 		return this.quoteService.findById(id, ["author"]);
 	}
 
-	@Post("me/myquote")
+	@Post()
 	@HttpCode(HttpStatus.CREATED)
 	async create(@Body() quoteDto: QuoteDto): Promise<Quote> {
 		return this.quoteService.create(quoteDto);
 	}
 
-	@Patch("me/myquote/:id")
+	@Patch("/:id")
 	@HttpCode(HttpStatus.OK)
 	async update(
 		@Param("id") id: string,
@@ -57,7 +57,7 @@ export class QuoteController {
 		return this.quoteService.update(id, quoteDto);
 	}
 
-	@Delete("me/myquote/:id")
+	@Delete("/:id")
 	@HttpCode(HttpStatus.OK)
 	async remove(@Param("id") id: string, @GetCurrentUserId() userId: string): Promise<Quote> {
 		const quote: Quote = await this.quoteService.findById(id, ["author"]);
