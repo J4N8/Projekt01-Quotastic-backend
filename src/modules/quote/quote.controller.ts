@@ -31,6 +31,20 @@ export class QuoteController {
 	}
 
 	@Public()
+	@Get("sorted_score")
+	@HttpCode(HttpStatus.OK)
+	async findAllSortedScore(@Query("page") page: number): Promise<PaginatedResult> {
+		return this.quoteService.paginateSort(page, ["author"], {score: "DESC"});
+	}
+
+	@Public()
+	@Get("sorted_recent")
+	@HttpCode(HttpStatus.OK)
+	async findAllSortedRecent(@Query("page") page: number): Promise<PaginatedResult> {
+		return this.quoteService.paginateSort(page, ["author"], {created_at: "DESC"});
+	}
+
+	@Public()
 	@Get("/:id")
 	@HttpCode(HttpStatus.OK)
 	async findOne(@Param("id") id: string): Promise<Quote> {

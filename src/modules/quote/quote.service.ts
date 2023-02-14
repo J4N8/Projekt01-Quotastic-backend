@@ -3,6 +3,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
 
 import {Quote} from "../../entities/quote.entity";
+import {PaginatedResult} from "../../interfaces/paginated-result.interface";
 import Logging from "../../library/logging";
 import {AbstractService} from "../common/abstract.service";
 import {QuoteDto} from "./dto/quote.dto";
@@ -31,6 +32,31 @@ export class QuoteService extends AbstractService {
 		} catch (error) {
 			Logging.error(error);
 			throw new InternalServerErrorException("Something went wrong while updating the quote.");
+		}
+	}
+
+	async paginateSort(page = 1, relations = [], order): Promise<PaginatedResult> {
+		const take = 10;
+
+		try {
+			const [data, total] = await this.repository.findAndCount({
+				take,
+				skip: (page - 1) * take,
+				relations,
+				order,
+			});
+
+			return {
+				data: data,
+				meta: {
+					total,
+					page,
+					last_page: Math.ceil(total / take),
+				},
+			};
+		} catch (error) {
+			Logging.error(error);
+			throw new InternalServerErrorException("Something went wrong while searching for a paginated elements.");
 		}
 	}
 }
