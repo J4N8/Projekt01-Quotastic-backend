@@ -11,7 +11,7 @@ async function bootstrap() {
 		bufferLogs: true,
 	});
 	app.enableCors({
-		origin: ["http://localhost:3000"],
+		origin: ["http://localhost:3000", "https://63f229ef3bec4d0008321492--wondrous-cranachan-832b4a.netlify.app/"],
 		credentials: true,
 	});
 	app.useGlobalPipes(new ValidationPipe());
