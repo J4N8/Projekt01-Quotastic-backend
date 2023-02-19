@@ -2,7 +2,7 @@ import {BadRequestException, Injectable, InternalServerErrorException} from "@ne
 import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "entities/user.entity";
 import {PostgresErrorCode} from "helpers/postgresErrorCode.enum";
-import Logging from "library/Logging";
+import Logging from "library/logging";
 import {AbstractService} from "modules/common/abstract.service";
 import {Repository} from "typeorm";
 import {compareHash, hash} from "utils/bcrypt";

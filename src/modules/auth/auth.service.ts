@@ -12,7 +12,7 @@ import {Request, Response} from "express";
 import {PostgresErrorCode} from "helpers/postgresErrorCode.enum";
 import {CookieType, JwtType, TokenPayload} from "interfaces/auth.interface";
 import {UserData} from "interfaces/user.interface";
-import Logging from "library/Logging";
+import Logging from "library/logging";
 import {UserService} from "modules/user/user.service";
 import {compareHash, hash} from "utils/bcrypt";
 
