@@ -10,7 +10,10 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule, {
 		bufferLogs: true,
 	});
-	app.enableCors();
+	app.enableCors({
+		origin: ["http://localhost:3000", "https://63f229ef3bec4d0008321492--wondrous-cranachan-832b4a.netlify.app"],
+		credentials: true,
+	});
 	app.useGlobalPipes(new ValidationPipe());
 	app.use(cookieParser());
 	// Setup to display files
