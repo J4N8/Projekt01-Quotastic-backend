@@ -1,35 +1,3 @@
-# Tutorial
-
----
-
-### Table of Contents
-
-- [Description](#description)
-- [Available Scripts](#available-scripts)
-- [Learn More](#learn-more)
-- [Support](#support)
-- [References](#references)
-- [Author Info](#author-info)
-
----
-
-## Description
-
-If you want to have a different font, go to: [google fonts](https://fonts.google.com/) and download desired font.
-
-**In this tutorial you will learn how to use:**
-
-- react-bootstrap
-- react-hook-form with yup validation
-- CRUD functionality - Create Read Update Delete
-- file upload
-- connect ReactJS and NestJS
-- setup NestJS with custom logging
-- connect to PostgreSQL database using TypeORM
-- create dtos with validation
-- deploy ReactJS to AWS S3 Bucket
-- deploy NestJS to AWS ECS (Elastic Container Service)
-
 #### Technologies
 
 - [Typescript](https://www.typescriptlang.org/)
@@ -47,10 +15,6 @@ If you want to have a different font, go to: [google fonts](https://fonts.google
 - [Git](https://git-scm.com/)
 - [GitHub](https://github.com/)
 - [Trello](https://trello.com/)
-
-[Back To The Top](#Tutorial)
-
----
 
 ## Available Scripts
 
@@ -100,18 +64,7 @@ Run both **prettier** and **eslint** with: `npm run format`
 
 [Back To The Top](#Tutorial)
 
----
-
 ## References
 
 - Website - [@skillupmentor](https://skillupmentor.com/)
 - Github - [@skillupmentor](https://github.com/skillupmentor)
-
-[Back To The Top](#Tutorial)
-
-## Author Info
-
-- LinkedIn - [@nejcrogelsek](https://www.linkedin.com/in/nejcrogelsek/)
-- Github - [@nejcrogelsek](https://github.com/nejcrogelsek)
-
-[Back To The Top](#Tutorial)
