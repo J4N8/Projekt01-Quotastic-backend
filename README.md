@@ -1,4 +1,4 @@
-#### Technologies
+## Technologies
 
 - [Typescript](https://www.typescriptlang.org/)
 - [ReactJS](https://reactjs.org/)
@@ -10,7 +10,7 @@
 - [TypeORM](https://typeorm.io/)
 - [AWS](https://aws.amazon.com/)
 
-#### Tools
+### Tools
 
 - [Git](https://git-scm.com/)
 - [GitHub](https://github.com/)
@@ -61,8 +61,6 @@ $ npm run test:cov
 - `npm run lint:fix` - Fix some of the errors.
 
 Run both **prettier** and **eslint** with: `npm run format`
-
-[Back To The Top](#Tutorial)
 
 ## References
 
